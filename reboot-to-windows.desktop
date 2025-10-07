@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Reboot to Windows
+Exec=HOME/.local/bin/win.sh
+Icon=HOME/.local/share/icons/win.svg
+X-Shortcut-App=true
