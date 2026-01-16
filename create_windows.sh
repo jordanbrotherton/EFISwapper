@@ -18,7 +18,6 @@ if [[ -z $WINDOWS ]]; then
 fi
 
 BOOTORDER=$(efibootmgr |  grep "BootOrder:" | awk '{print $2}')
-BOOTCOMMAND="pkexec efibootmgr -o $BOOTORDER"
 FIRSTENTRY=$(echo $BOOTORDER | cut -d ',' -f 1)
 
 BOOTORDER=$(echo $BOOTORDER | sed "s/$FIRSTENTRY/WIN/g")
@@ -27,11 +26,13 @@ BOOTORDER=$(echo $BOOTORDER | sed "s/$WINDOWS/NIX/g")
 BOOTORDER=$(echo $BOOTORDER | sed "s/WIN/$WINDOWS/g")
 BOOTORDER=$(echo $BOOTORDER | sed "s/NIX/$FIRSTENTRY/g")
 
+BOOTCOMMAND="pkexec efibootmgr -o $BOOTORDER"
+
 # Create boot script.
 echo "Creating boot script..."
 mkdir -p "$HOME/.local/bin"
-printf "#!/bin/sh\n$BOOTCOMMAND\nreboot" > "$HOME/.local/bin/winboot.sh"
-chmod +x "$HOME/.local/bin/winboot.sh"
+printf "#!/bin/sh\n$BOOTCOMMAND\nreboot" > "$HOME/.local/bin/winboot"
+chmod +x "$HOME/.local/bin/winboot"
 
 # Install shortcut.
 echo "Installing shortcut..."

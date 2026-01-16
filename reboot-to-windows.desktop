@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Reboot to Windows
-Exec=HOME/.local/bin/win.sh
+Exec=bash HOME/.local/bin/winboot
 Icon=HOME/.local/share/icons/win.svg
 X-Shortcut-App=true
+Terminal=false
